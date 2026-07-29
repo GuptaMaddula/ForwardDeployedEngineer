@@ -39,5 +39,5 @@ for char in password:
     your_password+=char
 
 
-print(f"Your final password is: {your_password}")
+print(f"Your final password is : {your_password}")
 

@@ -9,16 +9,41 @@ placeholder =""
 for chars in word:
     placeholder+="_"
 print(placeholder)
-print("Guess a letter in the word.")
+#guessed_word=""
+lives=len(word)
+game_over=False
+correct_letters = []
 
-letter = str(input("guess a letter: ")).lower()
-guessed_word=""
+while lives > 0:
+    letter = str(input("guess a letter in the word: ")).lower()
+   
 
-for char in word:
-    if char == letter:
-        print(letter)
-        guessed_word+=letter
-    else:
-        guessed_word+="_"
+    guessed_word=""
+    for char in word:
+        if char == letter:
+            guessed_word+=letter
+            correct_letters.append(letter)
+        elif char in correct_letters:
+            guessed_word+=char
+        else:
+            guessed_word+="_"
 
-print(guessed_word)
+    print(guessed_word)
+    if letter not in word:
+        lives -= 1
+        print(f"Incorrect guess. You have {lives} lives remaining.")
+        if lives == 0:
+            print("Game over! You've run out of lives.")
+            game_over=True
+            break
+
+    if guessed_word == word:
+        print("Congratulations! You've guessed the word correctly.")
+        game_over=True
+        break
+
+
+
+ # if len(letter) != 1 or not letter.isalpha():
+    #     print("Please enter a single alphabetic character.")
+    #     continue

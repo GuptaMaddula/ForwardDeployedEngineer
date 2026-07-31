@@ -14,9 +14,13 @@ lives=len(word)
 game_over=False
 correct_letters = []
 
-while lives > 0:
+while not game_over:
     letter = str(input("guess a letter in the word: ")).lower()
+
    
+    if letter in correct_letters:
+        print(f"You've already guessed the letter '{letter}'. Try a different letter.")
+        continue
 
     guessed_word=""
     for char in word:
@@ -31,19 +35,13 @@ while lives > 0:
     print(guessed_word)
     if letter not in word:
         lives -= 1
-        print(f"Incorrect guess. You have {lives} lives remaining.")
+        print(f"***************************Incorrect guess. You have {lives} lives remaining.**********************************")
         if lives == 0:
-            print("Game over! You've run out of lives.")
+            print("***************************Game over! You've run out of lives.**********************************")
             game_over=True
             break
 
     if guessed_word == word:
-        print("Congratulations! You've guessed the word correctly.")
+        print("***************************Congratulations! You've guessed the word correctly.**********************************")
         game_over=True
         break
-
-
-
- # if len(letter) != 1 or not letter.isalpha():
-    #     print("Please enter a single alphabetic character.")
-    #     continue

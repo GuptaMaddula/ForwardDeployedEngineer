@@ -1,9 +1,5 @@
 alphabet=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
-direction=input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").upper()
-text=input("Type your message:\n").upper()
-shift=int(input("Type the shift number:\n"))
-
 def encrypt(text,shift):
     cipher_text=""
     for char in text:
@@ -33,9 +29,28 @@ def decrypt(text,shift):
     print(f"The decoded text is {decipher_text}")
 
 
-if direction=="ENCODE":
-    encrypt(text,shift)
-elif direction=="DECODE":
-    decrypt(text,shift)
-else:
-    print("Invalid input. Please type 'encode' or 'decode'.")
+should_continue=True
+
+while should_continue:
+    direction=input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").upper()
+    if direction!="ENCODE" and direction!="DECODE":
+        print("Invalid input. Please type 'encode' or 'decode'.")  
+    
+      
+    elif direction=="DECODE":
+        text=input("Type your message:\n").upper()
+        shift=int(input("Type the shift number:\n"))
+        decrypt(text,shift)
+    else:
+        text=input("Type your message:\n").upper()
+        shift=int(input("Type the shift number:\n"))
+        encrypt(text,shift)
+    restart=input("Type 'yes' if you want to go again. Otherwise type 'no'.\n").lower()
+    if restart=="no":
+        should_continue=False
+        print("Goodbye!")
+
+
+
+
+

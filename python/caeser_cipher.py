@@ -33,4 +33,9 @@ def decrypt(text,shift):
     print(f"The decoded text is {decipher_text}")
 
 
-#decrypt(text,shift)
+if direction=="ENCODE":
+    encrypt(text,shift)
+elif direction=="DECODE":
+    decrypt(text,shift)
+else:
+    print("Invalid input. Please type 'encode' or 'decode'.")

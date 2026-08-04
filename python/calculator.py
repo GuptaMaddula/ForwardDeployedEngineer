@@ -33,3 +33,4 @@ while not do_perform:
     continue_calculation = input("Type 'yes' to continue calculating with the result, or 'no' to exit: ").lower()
     if continue_calculation != "yes":
         do_perform = True
+        print("Exiting the calculator. Goodbye!")

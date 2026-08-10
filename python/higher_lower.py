@@ -122,3 +122,10 @@ data=[
     }
 ]
 
+print("Welcome to the Higher Lower Game!")
+print("You will be given two Instagram accounts, and you have to guess which one has more followers.")
+print(f"Compare A: {data[0]['name']}, a {data[0]['description']} from {data[0]['country']}.")
+compare={}
+
+
+

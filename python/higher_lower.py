@@ -1,3 +1,6 @@
+import random
+
+
 data=[
 
     {
@@ -121,11 +124,27 @@ data=[
         'country': "United States"
     }
 ]
-
+score=0
+continue_game=True
 print("Welcome to the Higher Lower Game!")
 print("You will be given two Instagram accounts, and you have to guess which one has more followers.")
-print(f"Compare A: {data[0]['name']}, a {data[0]['description']} from {data[0]['country']}.")
-compare={}
+random_index_A=0
+while continue_game:
+    print(f"Compare A: {data[random_index_A]['name']}, a {data[random_index_A]['description']} from {data[random_index_A]['country']}.")
+    random_index_B=random.randint(1,len(data)-1)
+    print(f"Against B: {data[random_index_B]['name']}, a {data[random_index_B]['description']} from {data[random_index_B]['country']}.")
+    choice = input("Who has more followers? Type 'A' or 'B': ").upper()
+    if data[random_index_A]['followers'] > data[random_index_B]['followers']:
+        correct_answer = 'A'
+    else:
+        correct_answer = 'B'
 
-
-
+    if choice == correct_answer:
+        print("You are right!")
+        score+=1
+        print(f"******************Current score: {score}********************")
+        random_index_A=random_index_B
+    else:
+        print("Sorry, that's wrong.End of the game.")
+        print(f"*********************Final score: {score}********************")
+        continue_game=False

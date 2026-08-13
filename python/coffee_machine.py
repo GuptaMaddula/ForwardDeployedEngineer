@@ -26,20 +26,23 @@ menu={
 }
 
 report={
-    "milk": 300,
-    "water": 300,
-    "coffee": 100,
+    "milk": 1000,
+    "water": 2000,
+    "coffee": 500,
     "money": 0
 }
 
-quarters=float(input("How many quarters? "))
-dimes=float(input("How many dimes? "))
-nickels=float(input("How many nickels? "))
-pennies=float(input("How many pennies? "))
+choose_coffee = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
-def calculate_money(quarters, dimes, nickels, pennies):
+def calculate_money():
+    quarters=float(input("How many quarters? "))
+    dimes=float(input("How many dimes? "))
+    nickels=float(input("How many nickels? "))
+    pennies=float(input("How many pennies? "))
     total = (quarters * 0.25) + (dimes * 0.10) + (nickels * 0.05) + (pennies * 0.01)
     return total
+
+total_money = calculate_money()
 
 def prepare_latte():
     if report["milk"] >= menu["latte"]["ingredients"]["milk"] and report["water"] >= menu["latte"]["ingredients"]["water"] and report["coffee"] >= menu["latte"]["ingredients"]["coffee"]:
@@ -48,6 +51,57 @@ def prepare_latte():
         report["coffee"] -= menu["latte"]["ingredients"]["coffee"]
         report["money"] += menu["latte"]["cost"]
         print("Here is your latte ☕. Enjoy!")
+        print(f"Here is your change: ${total_money - menu['latte']['cost']:.2f}")
     else:
         print("Sorry, there are not enough resources to make a latte.")
+
+def prepare_espresso():
+    if report["milk"] >= menu["espresso"]["ingredients"]["milk"] and report["water"] >= menu["espresso"]["ingredients"]["water"] and report["coffee"] >= menu["espresso"]["ingredients"]["coffee"]:
+        report["milk"] -= menu["espresso"]["ingredients"]["milk"]
+        report["water"] -= menu["espresso"]["ingredients"]["water"]
+        report["coffee"] -= menu["espresso"]["ingredients"]["coffee"]
+        report["money"] += menu["espresso"]["cost"]
+        print("Here is your espresso ☕. Enjoy!")
+        print(f"Here is your change: ${total_money - menu['espresso']['cost']:.2f}")
+    else:
+        print("Sorry, there are not enough resources to make an espresso.")
+
+def prepare_cappuccino():
+    if report["milk"] >= menu["cappuccino"]["ingredients"]["milk"] and report["water"] >= menu["cappuccino"]["ingredients"]["water"] and report["coffee"] >= menu["cappuccino"]["ingredients"]["coffee"]:
+        report["milk"] -= menu["cappuccino"]["ingredients"]["milk"]
+        report["water"] -= menu["cappuccino"]["ingredients"]["water"]
+        report["coffee"] -= menu["cappuccino"]["ingredients"]["coffee"]
+        report["money"] += menu["cappuccino"]["cost"]
+        print("Here is your cappuccino ☕. Enjoy!")
+        print(f"Here is your change: ${total_money - menu['cappuccino']['cost']:.2f}")
+    else:
+        print("Sorry, there are not enough resources to make a cappuccino.")
+
+def update_report():
+    print(f"Milk: {report['milk']}ml")
+    print(f"Water: {report['water']}ml")
+    print(f"Coffee: {report['coffee']}g")
+    print(f"Money: ${report['money']:.2f}")
+
+
+
+
+if choose_coffee == "espresso":
+    prepare_espresso()
+    update_report()
+elif choose_coffee == "latte":
+    prepare_latte()
+    update_report()
+elif choose_coffee == "cappuccino":
+    prepare_cappuccino()
+    update_report()
+elif choose_coffee == "report":
+    update_report()
+else:
+    print("Invalid choice. Please try again.")
+
+
+
+
+
 

@@ -42,40 +42,57 @@ def calculate_money():
     total = (quarters * 0.25) + (dimes * 0.10) + (nickels * 0.05) + (pennies * 0.01)
     return total
 
-total_money = calculate_money()
 
-def prepare_latte():
-    if report["milk"] >= menu["latte"]["ingredients"]["milk"] and report["water"] >= menu["latte"]["ingredients"]["water"] and report["coffee"] >= menu["latte"]["ingredients"]["coffee"]:
-        report["milk"] -= menu["latte"]["ingredients"]["milk"]
-        report["water"] -= menu["latte"]["ingredients"]["water"]
-        report["coffee"] -= menu["latte"]["ingredients"]["coffee"]
-        report["money"] += menu["latte"]["cost"]
-        print("Here is your latte ☕. Enjoy!")
-        print(f"Here is your change: ${total_money - menu['latte']['cost']:.2f}")
-    else:
-        print("Sorry, there are not enough resources to make a latte.")
 
-def prepare_espresso():
-    if report["milk"] >= menu["espresso"]["ingredients"]["milk"] and report["water"] >= menu["espresso"]["ingredients"]["water"] and report["coffee"] >= menu["espresso"]["ingredients"]["coffee"]:
-        report["milk"] -= menu["espresso"]["ingredients"]["milk"]
-        report["water"] -= menu["espresso"]["ingredients"]["water"]
-        report["coffee"] -= menu["espresso"]["ingredients"]["coffee"]
-        report["money"] += menu["espresso"]["cost"]
-        print("Here is your espresso ☕. Enjoy!")
-        print(f"Here is your change: ${total_money - menu['espresso']['cost']:.2f}")
+def coffee(choose_coffee):
+    total_money = calculate_money()
+    if report["milk"] >= menu[choose_coffee]["ingredients"]["milk"] and report["water"] >= menu[choose_coffee]["ingredients"]["water"] and report["coffee"] >= menu[choose_coffee]["ingredients"]["coffee"]:
+        report["milk"] -= menu[choose_coffee]["ingredients"]["milk"]
+        report["water"] -= menu[choose_coffee]["ingredients"]["water"]
+        report["coffee"] -= menu[choose_coffee]["ingredients"]["coffee"]
+        report["money"] += menu[choose_coffee]["cost"]
+        print("Here is your " + choose_coffee + " ☕. Enjoy!")
+        print(f"Here is your change: ${total_money - menu[choose_coffee]['cost']:.2f}")
     else:
-        print("Sorry, there are not enough resources to make an espresso.")
+        print("Sorry, there are not enough resources to make a " + choose_coffee + ".")
 
-def prepare_cappuccino():
-    if report["milk"] >= menu["cappuccino"]["ingredients"]["milk"] and report["water"] >= menu["cappuccino"]["ingredients"]["water"] and report["coffee"] >= menu["cappuccino"]["ingredients"]["coffee"]:
-        report["milk"] -= menu["cappuccino"]["ingredients"]["milk"]
-        report["water"] -= menu["cappuccino"]["ingredients"]["water"]
-        report["coffee"] -= menu["cappuccino"]["ingredients"]["coffee"]
-        report["money"] += menu["cappuccino"]["cost"]
-        print("Here is your cappuccino ☕. Enjoy!")
-        print(f"Here is your change: ${total_money - menu['cappuccino']['cost']:.2f}")
-    else:
-        print("Sorry, there are not enough resources to make a cappuccino.")
+
+
+
+
+
+# def prepare_latte():
+#     if report["milk"] >= menu["latte"]["ingredients"]["milk"] and report["water"] >= menu["latte"]["ingredients"]["water"] and report["coffee"] >= menu["latte"]["ingredients"]["coffee"]:
+#         report["milk"] -= menu["latte"]["ingredients"]["milk"]
+#         report["water"] -= menu["latte"]["ingredients"]["water"]
+#         report["coffee"] -= menu["latte"]["ingredients"]["coffee"]
+#         report["money"] += menu["latte"]["cost"]
+#         print("Here is your latte ☕. Enjoy!")
+#         print(f"Here is your change: ${total_money - menu['latte']['cost']:.2f}")
+#     else:
+#         print("Sorry, there are not enough resources to make a latte.")
+
+# def prepare_espresso():
+#     if report["milk"] >= menu["espresso"]["ingredients"]["milk"] and report["water"] >= menu["espresso"]["ingredients"]["water"] and report["coffee"] >= menu["espresso"]["ingredients"]["coffee"]:
+#         report["milk"] -= menu["espresso"]["ingredients"]["milk"]
+#         report["water"] -= menu["espresso"]["ingredients"]["water"]
+#         report["coffee"] -= menu["espresso"]["ingredients"]["coffee"]
+#         report["money"] += menu["espresso"]["cost"]
+#         print("Here is your espresso ☕. Enjoy!")
+#         print(f"Here is your change: ${total_money - menu['espresso']['cost']:.2f}")
+#     else:
+#         print("Sorry, there are not enough resources to make an espresso.")
+
+# def prepare_cappuccino():
+#     if report["milk"] >= menu["cappuccino"]["ingredients"]["milk"] and report["water"] >= menu["cappuccino"]["ingredients"]["water"] and report["coffee"] >= menu["cappuccino"]["ingredients"]["coffee"]:
+#         report["milk"] -= menu["cappuccino"]["ingredients"]["milk"]
+#         report["water"] -= menu["cappuccino"]["ingredients"]["water"]
+#         report["coffee"] -= menu["cappuccino"]["ingredients"]["coffee"]
+#         report["money"] += menu["cappuccino"]["cost"]
+#         print("Here is your cappuccino ☕. Enjoy!")
+#         print(f"Here is your change: ${total_money - menu['cappuccino']['cost']:.2f}")
+#     else:
+#         print("Sorry, there are not enough resources to make a cappuccino.")
 
 def update_report():
     print(f"Milk: {report['milk']}ml")
@@ -86,19 +103,21 @@ def update_report():
 
 
 
-if choose_coffee == "espresso":
-    prepare_espresso()
-    update_report()
-elif choose_coffee == "latte":
-    prepare_latte()
-    update_report()
-elif choose_coffee == "cappuccino":
-    prepare_cappuccino()
-    update_report()
-elif choose_coffee == "report":
-    update_report()
-else:
-    print("Invalid choice. Please try again.")
+while report["milk"] > 0 and report["water"] > 0 and report["coffee"] > 0:
+    choose_coffee = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    if choose_coffee == "espresso":
+        coffee(choose_coffee)
+        update_report()
+    elif choose_coffee == "latte":
+        coffee(choose_coffee)
+        update_report()
+    elif choose_coffee == "cappuccino":
+        coffee(choose_coffee)
+        update_report()
+    elif choose_coffee == "report":
+        update_report()
+    else:
+        print("Invalid choice. Please try again.")
 
 
 

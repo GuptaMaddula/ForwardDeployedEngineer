@@ -41,4 +41,13 @@ def calculate_money(quarters, dimes, nickels, pennies):
     total = (quarters * 0.25) + (dimes * 0.10) + (nickels * 0.05) + (pennies * 0.01)
     return total
 
-#def prepare_latte()
+def prepare_latte():
+    if report["milk"] >= menu["latte"]["ingredients"]["milk"] and report["water"] >= menu["latte"]["ingredients"]["water"] and report["coffee"] >= menu["latte"]["ingredients"]["coffee"]:
+        report["milk"] -= menu["latte"]["ingredients"]["milk"]
+        report["water"] -= menu["latte"]["ingredients"]["water"]
+        report["coffee"] -= menu["latte"]["ingredients"]["coffee"]
+        report["money"] += menu["latte"]["cost"]
+        print("Here is your latte ☕. Enjoy!")
+    else:
+        print("Sorry, there are not enough resources to make a latte.")
+

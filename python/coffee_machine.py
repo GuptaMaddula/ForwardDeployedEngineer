@@ -101,9 +101,9 @@ def update_report():
     print(f"Money: ${report['money']:.2f}")
 
 
+continues=True
 
-
-while report["milk"] > 0 and report["water"] > 0 and report["coffee"] > 0:
+while report["milk"] > 0 and report["water"] > 0 and report["coffee"] > 0 and continues!=False:
     choose_coffee = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if choose_coffee == "espresso":
         coffee(choose_coffee)
@@ -118,6 +118,9 @@ while report["milk"] > 0 and report["water"] > 0 and report["coffee"] > 0:
         update_report()
     else:
         print("Invalid choice. Please try again.")
+        continues=False
+    
+        
 
 
 

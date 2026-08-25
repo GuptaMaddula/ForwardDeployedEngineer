@@ -17,6 +17,7 @@
 
 
 import turtle as t
+from turtle import Screen
 import random
 
 timmy=t.Turtle()
@@ -60,8 +61,22 @@ def random_walk():
         timmy.forward(50)
         timmy.setheading(random.choice(directions))
 
-drawshapes()
-random_walk()
+timmy.speed("fastest")
+
+def spirograph(size_of_gap):
+    for _ in range(int(360/size_of_gap)):
+        timmy.color(random_color())
+        timmy.circle(100)
+        timmy.setheading(timmy.heading()+size_of_gap)
+
+
+# drawshapes()
+# random_walk()
+
+spirograph(1)
+
+screen=Screen()
+screen.exitonclick()
 
 
 

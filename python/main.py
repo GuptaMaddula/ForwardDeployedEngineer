@@ -37,6 +37,8 @@ def drawshapes():
         timmy.color(random.choice(colours))
         draw_shape(shape_side_n)
 
+
+
 def random_walk():
     directions=[0,90,180,270]
     timmy.pensize(20)

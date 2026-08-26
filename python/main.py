@@ -73,7 +73,7 @@ def spirograph(size_of_gap):
 # drawshapes()
 # random_walk()
 
-spirograph(1)
+spirograph(0.5)
 
 screen=Screen()
 screen.exitonclick()
